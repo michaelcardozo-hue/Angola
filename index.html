@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>África em Foco: Destaque para Angola</title>
+  <style>
+    /* RESET E VARIÁVEIS DE CORES */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    :root {
+      --cor-preto: #0e0e0e;
+      --cor-vermelho: #cc092f;
+      --cor-amarelo: #ffcd00;
+      --cor-cinza-claro: #f8f9fa;
+      --cor-texto: #1a1a1a;
+    }
+
+    /* FUNDO DIVIDIDO COM SÍMBOLO DA BANDEIRA DE ANGOLA (ENGRENAGEM, CATANA E ESTRELA) */
+    body {
+  position: relative;
+  background-color: var(--cor-preto);
+  background-image:
+    linear-gradient(180deg, #cc092f 50%, #0e0e0e 50%);
+  background-attachment: fixed;
+  color: var(--cor-texto);
+  line-height: 1.6;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image: url("imagens/simbolo-angola.png");
+  background-size: 160px 160px;
+  background-repeat: repeat;
+  opacity: 0.5;
+}
+
+    /* CABEÇALHO E NAVEGAÇÃO */
+    header {
+      background-color: rgba(14, 14, 14, 0.95);
+      border-bottom: 4px solid var(--cor-amarelo);
+      padding: 1.5rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(5px);
+    }
+
+    header h1 {
+      color: var(--cor-amarelo);
+      font-size: 1.8rem;
+    }
+
+    header h1 span {
+      color: var(--cor-vermelho);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--cor-amarelo);
+    }
+
+    /* CONTAINER PRINCIPAL */
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* SEÇÃO HERO */
+    .hero {
+      padding: 3.5rem 2rem;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.96);
+      border-radius: 0 0 16px 16px;
+      border-bottom: 4px solid var(--cor-amarelo);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      margin-bottom: 2rem;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      color: var(--cor-vermelho);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    /* SEÇÃO MAPA INTERATIVO REAL */
+    .map-section {
+      padding: 2rem;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.96);
+      border-radius: 16px;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .map-container {
+      max-width: 800px;
+      height: 450px;
+      margin: 1.5rem auto 0 auto;
+      background-color: var(--cor-cinza-claro);
+      border-radius: 12px;
+      border: 3px solid var(--cor-vermelho);
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(204, 9, 47, 0.2);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* PAINEL DE DADOS: PIB & IDH */
+    .stats-section {
+      background-color: rgba(255, 255, 255, 0.96);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .stat-card {
+      background-color: var(--cor-cinza-claro);
+      border: 2px solid var(--cor-preto);
+      border-top: 5px solid var(--cor-vermelho);
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-card h3 {
+      color: var(--cor-vermelho);
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .stat-card .value {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--cor-preto);
+      margin: 0.5rem 0;
+    }
+
+    /* CONTEÚDO PRINCIPAL (ABAS PRINCIPAIS) */
+    .content-section {
+      background-color: rgba(255, 255, 255, 0.96);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      color: var(--cor-preto);
+      border-bottom: 3px solid var(--cor-vermelho);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background-color: var(--cor-preto);
+      color: #ffffff;
+      border: 2px solid var(--cor-vermelho);
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background-color: var(--cor-vermelho);
+      color: var(--cor-amarelo);
+    }
+
+    .tab-content {
+      display: none;
+      background-color: var(--cor-cinza-claro);
+      padding: 2rem;
+      border-radius: 8px;
+      border-left: 5px solid var(--cor-vermelho);
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* SUB-ABAS DA CULTURA E ECONOMIA */
+    .sub-tabs {
+      display: flex;
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .sub-tab-btn {
+      background-color: #ffffff;
+      color: var(--cor-preto);
+      border: 2px solid var(--cor-amarelo);
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .sub-tab-btn.active, .sub-tab-btn:hover {
+      background-color: var(--cor-amarelo);
+      color: var(--cor-preto);
+    }
+
+    .sub-tab-content {
+      display: none;
+      margin-top: 1.5rem;
+      background-color: #ffffff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .sub-tab-content.active {
+      display: block;
+    }
+
+    .topic-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin: 1rem 0;
+      border: 3px solid var(--cor-preto);
+    }
+
+    /* CARD DE POLÍTICOS */
+    .politic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .politic-card {
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-top: 4px solid var(--cor-vermelho);
+      padding: 1.5rem;
+      border-radius: 6px;
+    }
+
+    .politic-card h4 {
+      color: var(--cor-preto);
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .politic-card .role {
+      color: var(--cor-vermelho);
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-bottom: 0.8rem;
+    }
+
+    /* RODAPÉ */
+    footer {
+      background-color: var(--cor-preto);
+      text-align: center;
+      padding: 2rem;
+      border-top: 4px solid var(--cor-vermelho);
+      margin-top: 4rem;
+      color: #ffffff;
+    }
+
+    footer span {
+      color: var(--cor-amarelo);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <h1>África | <span>Angola</span></h1>
+    <nav>
+      <ul>
+        <li><a href="#mapa">Mapa</a></li>
+        <li><a href="#indicadores">PIB & IDH</a></li>
+        <li><a href="#informacoes">Informações</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <h2>República de Angola</h2>
+      <p>Conheça um dos países mais dinâmicos do continente africano: sua rica cultura, economia em expansão, dados sociais e lideranças históricas.</p>
+    </section>
+
+    <!-- MAPA REAL INTERATIVO -->
+    <section id="mapa" class="map-section">
+      <h2 class="section-title" style="text-align: center;">Localização de Angola na África</h2>
+      <p>Explore o mapa interativo abaixo para visualizar a posição geográfica real de Angola no continente africano.</p>
+      
+      <div class="map-container">
+        <iframe 
+          src="https://maps.google.com/maps?q=Angola&t=&z=4&ie=UTF8&iwloc=&output=embed"
+          loading="lazy" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <!-- INDICADORES ECONÔMICOS E SOCIAIS -->
+    <section id="indicadores" class="stats-section">
+      <h2 class="section-title">Indicadores Principais (Angola)</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Produto Interno Bruto (PIB)</h3>
+          <div class="value">~$106 Bi</div>
+          <p>Uma das maiores economias da África Subsaariana.</p>
+        </div>
+        <div class="stat-card">
+          <h3>Índice de Dev. Humano (IDH)</h3>
+          <div class="value">0.591</div>
+          <p>Classificação de Desenvolvimento Humano Médio segundo a ONU.</p>
+        </div>
+        <div class="stat-card">
+          <h3>População</h3>
+          <div class="value">~36 Mi</div>
+          <p>Com vasta maioria jovem e em rápido crescimento urbano.</p>
+        </div>
+        <div class="stat-card">
+          <h3>Moeda</h3>
+          <div class="value">Kwanza</div>
+          <p>Moeda oficial da República de Angola (AOA).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFORMAÇÕES DETALHADAS -->
+    <section id="informacoes" class="content-section">
+      <h2 class="section-title">Detalhes sobre Angola</h2>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'cultura')">Cultura & Temas</button>
+        
+      </div>
+
+      <!-- ABA CULTURA COM SUB-ABAS -->
+      <div id="cultura" class="tab-content active">
+        <h3>Cultura Angolana</h3>
+        <p style="margin-top: 0.5rem; color: #444;">
+          <strong>Resumo:</strong> A cultura angolana reflete uma fusão vibrante entre tradições milenares de diversas etnias (como os Umbundu, Kimbundu e Bakongo) e a herança da colonização portuguesa. É marcada por forte expressão musical, culinária rica e paixão pelos esportes.
+        </p>
+
+        <div style="background: #fff3d0; padding: 1rem; border-left: 5px solid #ffcd00; border-radius: 6px; margin: 1rem 0;">
+
+          <h4>Mbanza Kongo: um patrimônio histórico</h4>
+          <img
+  src="https://commons.wikimedia.org/wiki/Special:FilePath/Desfile_Provincial_do_Carnaval_em_Mbanza_Kongo.jpg"
+  alt="Celebração cultural em Mbanza Kongo"
+  class="topic-image"
+>
+      
+          <p>
+              Mbanza Kongo foi a antiga capital do Reino do Kongo,
+              uma importante formação política da história africana.
+              A cidade preserva vestígios históricos e foi reconhecida
+              como Patrimônio Mundial da UNESCO em 2017.
+          </p>
+      
+      </div>
+
+        <p style="margin-top: 1rem; font-weight: bold;">Clique nos tópicos abaixo para explorar informações detalhadas:</p>
+
+        
+<!-- BOTÕES DE NAVEGAÇÃO DOS TÓPICOS -->
+<div class="sub-tabs">
+  <button class="sub-tab-btn active" onclick="openSubTab(event, 'gastronomia')">Gastronomia</button>
+  <button class="sub-tab-btn" onclick="openSubTab(event, 'esportes')">Esportes</button>
+  <button class="sub-tab-btn" onclick="openSubTab(event, 'danca-musica')">Dança & Música</button>
+  <button class="sub-tab-btn" onclick="openSubTab(event, 'economia-detalhe')">Economia</button>
+  <button class="sub-tab-btn" onclick="openSubTab(event, 'povos-linguas')">Povos e Línguas</button>
+  <button class="sub-tab-btn" onclick="openSubTab(event, 'artesanato')">Arte e Literatura</button>
+  <button class="sub-tab-btn" onclick="openSubTab(event, 'festas')">Festas e Tradições</button>
+</div>
+
+<!-- GASTRONOMIA -->
+<div id="gastronomia" class="sub-tab-content active">
+  <h4>Gastronomia Tradicional (Mufete Angolano)</h4>
+  <img src="https://tse4.mm.bing.net/th/id/OIP.HLgFaZ3Ll89ILbYoVw_J2AHaFj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+       alt="Mufete angolano" class="topic-image">
+
+  <p>A culinária de Angola é famosa por pratos ricos em temperos e peixe fresco.</p>
+  <ul style="margin: 1rem 0 0 1.5rem;">
+    <li><strong>Mufete:</strong> Peixe grelhado acompanhado de feijão, farinha de mandioca, banana-pão e batata-doce.</li>
+    <li><strong>Funge:</strong> Acompanhamento feito com farinha de mandioca ou milho.</li>
+    <li><strong>Calulu:</strong> Guisado tradicional de peixe seco ou carne seca, quiabo e folhas.</li>
+    <li><strong>Muamba de Galinha:</strong> Ensopado de galinha preparado com molho de óleo de palma.</li>
+  </ul>
+</div>
+
+<!-- ESPORTES -->
+<div id="esportes" class="sub-tab-content">
+  <h4>Esportes em Angola</h4>
+  <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80"
+       alt="Basquetebol" class="topic-image">
+
+  <p>O esporte desempenha um papel importante na integração nacional angolana.</p>
+  <ul style="margin: 1rem 0 0 1.5rem;">
+    <li><strong>Basquetebol:</strong> Modalidade em que Angola conquistou grande destaque no continente africano.</li>
+    <li><strong>Futebol:</strong> Um dos esportes mais populares. A seleção nacional é conhecida como Palancas Negras.</li>
+    <li><strong>Engolo:</strong> Prática tradicional angolana de combate corporal, também estudada por suas relações culturais com a capoeira.</li>
+  </ul>
+</div>
+
+<!-- DANÇA E MÚSICA -->
+<div id="danca-musica" class="sub-tab-content">
+  <h4>Dança e Música: Kizomba, Semba e Kuduro</h4>
+  <img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?auto=format&fit=crop&w=1200&q=80"
+       alt="Dança" class="topic-image">
+
+  <p>A música e a dança são partes fundamentais da identidade angolana.</p>
+  <ul style="margin: 1rem 0 0 1.5rem;">
+    <li><strong>Semba:</strong> Ritmo musical e dança tradicional urbana de Angola.</li>
+    <li><strong>Kizomba:</strong> Gênero musical e dança de par que ganhou popularidade internacional.</li>
+    <li><strong>Kuduro:</strong> Estilo musical urbano nascido em Luanda, com batidas eletrônicas e dança energética.</li>
+  </ul>
+</div>
+
+<!-- ECONOMIA -->
+<div id="economia-detalhe" class="sub-tab-content">
+  <h4>Economia de Angola</h4>
+  <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80"
+       alt="Atividade econômica e transporte" class="topic-image">
+
+  <p>A economia angolana possui importantes recursos naturais e busca diversificar suas atividades.</p>
+  <ul style="margin: 1rem 0 0 1.5rem;">
+    <li><strong>Petróleo:</strong> Um dos principais produtos de exportação do país.</li>
+    <li><strong>Diamantes:</strong> Angola possui importantes áreas de extração de diamantes.</li>
+    <li><strong>Agricultura:</strong> Produção de café, milho, mandioca e outros produtos.</li>
+    <li><strong>Infraestrutura:</strong> O Corredor do Lobito é importante para o transporte e comércio regional.</li>
+  </ul>
+</div>
+
+<!-- POVOS E LÍNGUAS -->
+<div id="povos-linguas" class="sub-tab-content">
+  <h4>A diversidade dos povos angolanos</h4>
+
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Carnaval_em_Angola.jpg"
+       alt="Vestimentas e manifestações culturais em Angola"
+       class="topic-image">
+
+  <p>Angola possui uma grande diversidade cultural, formada por diferentes povos, comunidades e tradições.</p>
+
+  <ul style="margin: 1rem 0 0 1.5rem;">
+    <li><strong>Ovimbundu:</strong> Um dos maiores grupos étnicos do país, com presença importante na região central.</li>
+    <li><strong>Ambundu:</strong> Grupo historicamente associado ao centro-norte de Angola.</li>
+    <li><strong>Bakongo:</strong> Grupo com forte presença no norte do país.</li>
+    <li><strong>Cokwe:</strong> Comunidades presentes principalmente no leste de Angola, com tradições artísticas próprias.</li>
+  </ul>
+
+  <h4 style="margin-top: 1.5rem;">Línguas de Angola</h4>
+  <p>O português é a língua oficial, mas também são faladas diversas línguas nacionais, como Umbundu, Kimbundu, Kikongo e Cokwe.</p>
+</div>
+
+<!-- ARTESANATO E LITERATURA -->
+<div id="artesanato" class="sub-tab-content">
+  <h4>Arte e expressão cultural</h4>
+
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Angola%2C_tchokwe%2C_maschera_muana_pwo%2C_xx_sec..JPG"
+       alt="Máscara tradicional Mwana Pwo do povo Cokwe"
+       class="topic-image">
+
+  <p>A arte angolana representa a história, a identidade e as tradições de diferentes comunidades.</p>
+
+  <ul style="margin: 1rem 0 0 1.5rem;">
+    <li><strong>Escultura:</strong> A obra conhecida como O Pensador, associada à arte Cokwe, é um símbolo da cultura angolana.</li>
+    <li><strong>Máscaras tradicionais:</strong> A Mwana Pwo é um exemplo da riqueza artística do povo Cokwe.</li>
+    <li><strong>Artesanato:</strong> Trabalhos em madeira, cerâmica, cestaria e tecidos fazem parte das manifestações culturais.</li>
+  </ul>
+
+  <h4 style="margin-top: 1.5rem;">Literatura angolana</h4>
+  <p>Escritores angolanos utilizaram a literatura para abordar a identidade, a história e a sociedade do país.</p>
+
+  <ul style="margin: 1rem 0 0 1.5rem;">
+    <li><strong>Agostinho Neto:</strong> Poeta e primeiro presidente de Angola.</li>
+    <li><strong>Pepetela:</strong> Escritor conhecido por obras sobre a história e a sociedade angolana.</li>
+    <li><strong>José Eduardo Agualusa:</strong> Escritor angolano reconhecido internacionalmente.</li>
+  </ul>
+</div>
+
+<!-- FESTAS E TRADIÇÕES -->
+<div id="festas" class="sub-tab-content">
+  <h4>Festas populares e tradições</h4>
+
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Carnaval_de_Luanda%2C_Cultura_de_Angola_01.jpg"
+       alt="Carnaval de Luanda"
+       class="topic-image">
+
+  <p>As festas e celebrações fazem parte da identidade cultural de Angola. Elas reúnem música, dança, roupas tradicionais e manifestações de diferentes comunidades.</p>
+
+  <ul style="margin: 1rem 0 0 1.5rem;">
+    <li><strong>Carnaval de Angola:</strong> Uma das manifestações culturais mais conhecidas, especialmente em Luanda, com desfiles, música e dança.</li>
+    <li><strong>Festas tradicionais:</strong> Diferentes regiões realizam celebrações próprias relacionadas à história e aos costumes locais.</li>
+    <li><strong>Tradições religiosas:</strong> As celebrações religiosas também fazem parte da vida cultural de diversas comunidades.</li>
+    <li><strong>11 de Novembro:</strong> Dia da Independência de Angola, celebrado nacionalmente.</li>
+  </ul>
+
+  <p style="margin-top: 1rem;">Essas celebrações ajudam a preservar a memória, os costumes e a identidade cultural do povo angolano.</p>
+</div>
+
+</div>
+<!-- FIM DA ABA CULTURA -->
+</div>
+<!-- FIM DA ABA PRINCIPAL DE CULTURA -->
+
+
+  <!-- RODAPÉ -->
+  <footer>
+    <p>&copy; Portal Informativo - África & <span>Angola</span></p>
+    <p><small>Desenvolvido com foco nas cores e símbolos da bandeira nacional angolana.</small></p>
+  </footer>
+
+  <!-- JAVASCRIPT DE INTERATIVIDADE -->
+  <script>
+    // Função das Abas Principais
+    function openTab(evt, tabName) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.remove('active'));
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(tabName).classList.add('active');
+      evt.currentTarget.classList.add('active');
+    }
+
+    // Função das Sub-Abas de Cultura
+    function openSubTab(evt, subTabName) {
+      const subContents = document.querySelectorAll('.sub-tab-content');
+      subContents.forEach(content => content.classList.remove('active'));
+
+      const subButtons = document.querySelectorAll('.sub-tab-btn');
+      subButtons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(subTabName).classList.add('active');
+      evt.currentTarget.classList.add('active');
+    }
+
+    
+  </script>
+</body>
+</html>
